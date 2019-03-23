@@ -9,7 +9,7 @@ module Wumpus
     attr_reader :number, :neighbors
 
     def add(thing)
-      @hazards[thing] = thing.to_sym
+      @hazards[thing] = thing.to_s
     end
 
     def remove(thing)
