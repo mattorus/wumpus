@@ -51,7 +51,7 @@ module Wumpus
     end
 
     def random_neighbor
-      @neighbors[@neighbors.to_a.sample[0].to_sym]
+      neighbor(@neighbors.to_a.sample[0])
     end
   end
 end

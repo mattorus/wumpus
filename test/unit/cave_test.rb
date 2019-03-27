@@ -10,14 +10,14 @@ describe "A cave" do
     rooms.each do |room|
       room.neighbors.count.must_equal(3)
       
-      assert room.neighbors.all? { |e| e.neighbors.include?(room) }
+      assert room.neighbors.all? { |e| e[1].neighbors.include?(room.number.to_s.to_sym) }
     end
   end
 
   it "can select rooms at random" do
     sampling = Set.new
 
-    must_eventually("randomly select each room") do
+    MiniTest::Unit::TestCase.must_eventually("randomly select each room") do
       new_room = cave.random_room 
       sampling << new_room
 
@@ -27,7 +27,7 @@ describe "A cave" do
 
   it "can move hazards from one room to another" do
     room      = cave.random_room
-    neighbor  = room.neighbors.first
+    neighbor  = room.neighbors.first[1]
 
     room.add(:bats)
 
